@@ -16,6 +16,6 @@
 	<file src="DapperParameters\bin\$configuration$\DapperParameters.dll" target="lib\DapperParameters.dll" />
   </files>
   <dependencies>
-  	<dependency id="NHibernate" version="3.2.0.3001" />
+  	<dependency id="Dapper"/>
   </dependencies>
 </package>
