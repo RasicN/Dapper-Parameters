@@ -11,11 +11,11 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright &#x00A9; Microsoft Corporation.  All rights reserved.</copyright>
     <tags>dapper</tags>
+	<dependencies>
+  		<dependency id="Dapper"/>
+  	</dependencies>
   </metadata>
   <files>
 	<file src="DapperParameters\bin\$configuration$\DapperParameters.dll" target="lib\DapperParameters.dll" />
-  </files>
-  <dependencies>
-  	<dependency id="Dapper"/>
-  </dependencies>
+  </files>  
 </package>
