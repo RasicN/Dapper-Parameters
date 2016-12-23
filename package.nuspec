@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Dapper.ParameterExtensions</id>
+    <version>$version$</version>
+    <title>Dapper Parameter Extensions</title>
+    <authors>Joe Cisar</authors>
+    <owners>Joe Cisar</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Extension on the Dynamic Parameters of Dapper to make life a little easier when passing parameters to Dapper executions.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright &#x00A9; Microsoft Corporation.  All rights reserved.</copyright>
+    <tags>dapper</tags>
+  </metadata>
+  <files>
+	<file src="DapperParameters\bin\$configuration$\DapperParameters.dll" target="lib\net40\" />
+  </files>
+</package>
