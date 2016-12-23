@@ -13,6 +13,6 @@
     <tags>dapper</tags>
   </metadata>
   <files>
-	<file src="DapperParameters\bin\$configuration$\DapperParameters.dll" target="lib\net40\" />
+	<file src="DapperParameters\bin\$configuration$\DapperParameters.dll" target="lib\DapperParameters.dll" />
   </files>
 </package>
