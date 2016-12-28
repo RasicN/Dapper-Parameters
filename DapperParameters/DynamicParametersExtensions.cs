@@ -18,7 +18,7 @@ namespace DapperParameters
             source.Add(name, value, DbType.String);
         }
 
-        public static void AddTable<T>(this DynamicParameters source, string name, ICollection<T> values)
+        public static void AddTable<T>(this DynamicParameters source, string parameterName, string dataTableType, ICollection<T> values)
         {
             var table = new DataTable();
 
@@ -54,7 +54,7 @@ namespace DapperParameters
                 table.Rows.Add(parameters.ToArray());
             }
 
-            source.Add(name, table.AsTableValuedParameter(name));
+            source.Add(parameterName, table.AsTableValuedParameter(dataTableType));
         }
     }
 }

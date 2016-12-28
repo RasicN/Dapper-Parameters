@@ -47,7 +47,7 @@ namespace DapperParameters.Tests
         public void Table()
         {
             // Act
-            _parameters.AddTable("test", RandomValue.List<IntListType>());
+            _parameters.AddTable("test", "testType", RandomValue.List<IntListType>());
 
             // Assert
             var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
