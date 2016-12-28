@@ -8,16 +8,6 @@ namespace DapperParameters
 {
     public static class DynamicParametersExtensions
     {
-        public static void AddInt(this DynamicParameters source, string name, int value)
-        {
-            source.Add(name, value, DbType.Int32);
-        }
-
-        public static void AddString(this DynamicParameters source, string name, string value)
-        {
-            source.Add(name, value, DbType.String);
-        }
-
         public static void AddTable<T>(this DynamicParameters source, string parameterName, string dataTableType, ICollection<T> values)
         {
             var table = new DataTable();
