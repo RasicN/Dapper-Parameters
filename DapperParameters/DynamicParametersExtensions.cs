@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
@@ -21,6 +22,15 @@ namespace DapperParameters
                     // Property doesn't have a public setter so let's ignore it
                     continue;
                 }
+                // If the property is null asign allow null to data table
+                if (prop.PropertyType.IsGenericType &&
+                    prop.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                {
+                    var notNullableType = prop.PropertyType.GetGenericArguments()[0];
+                    table.Columns.Add(prop.Name, notNullableType).AllowDBNull = true;
+                    continue;
+                }
+
                 table.Columns.Add(prop.Name, prop.PropertyType);
             }
 
