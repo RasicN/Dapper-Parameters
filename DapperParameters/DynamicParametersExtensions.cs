@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
@@ -21,7 +22,7 @@ namespace DapperParameters
                     // Property doesn't have a public setter so let's ignore it
                     continue;
                 }
-                table.Columns.Add(prop.Name, prop.PropertyType);
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
             }
 
             foreach (var value in values)
