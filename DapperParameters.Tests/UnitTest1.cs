@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Dapper;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

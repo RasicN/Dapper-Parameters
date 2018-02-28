@@ -1,19 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperParameters", "DapperParameters\DapperParameters.csproj", "{82DEE5FE-4D79-4D1D-9585-C29F9632E061}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{877F8A19-65DE-4604-8F01-459865CB6ABE}"
-	ProjectSection(SolutionItems) = preProject
-		commands.json = commands.json
-		nuget.exe = nuget.exe
-		package.nuspec = package.nuspec
-		packageNuget.bat = packageNuget.bat
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperParameters.Tests", "DapperParameters.Tests\DapperParameters.Tests.csproj", "{78732B48-15CA-4149-912C-3AA8E3607B69}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperParameters", "DapperParameters\DapperParameters.csproj", "{56CD4CD9-983F-4B2B-95FC-D6329346F009}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,16 +15,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{82DEE5FE-4D79-4D1D-9585-C29F9632E061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82DEE5FE-4D79-4D1D-9585-C29F9632E061}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82DEE5FE-4D79-4D1D-9585-C29F9632E061}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82DEE5FE-4D79-4D1D-9585-C29F9632E061}.Release|Any CPU.Build.0 = Release|Any CPU
 		{78732B48-15CA-4149-912C-3AA8E3607B69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{78732B48-15CA-4149-912C-3AA8E3607B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78732B48-15CA-4149-912C-3AA8E3607B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78732B48-15CA-4149-912C-3AA8E3607B69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56CD4CD9-983F-4B2B-95FC-D6329346F009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56CD4CD9-983F-4B2B-95FC-D6329346F009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56CD4CD9-983F-4B2B-95FC-D6329346F009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56CD4CD9-983F-4B2B-95FC-D6329346F009}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EE1F030-FF24-4833-90A5-C830E680A48D}
 	EndGlobalSection
 EndGlobal
