@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using Dapper;
+using DapperParameters.Attributes;
 
 namespace DapperParameters
 {
@@ -17,9 +18,9 @@ namespace DapperParameters
 
             foreach (var prop in properties)
             {
-                if (prop.SetMethod == null)
+                if (IgnoreProperty(prop))
                 {
-                    // Property doesn't have a public setter so let's ignore it
+                    // Property doesn't have a public setter or marked as ignore so let's ignore it
                     continue;
                 }
                 table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
@@ -32,10 +33,9 @@ namespace DapperParameters
                 
                 foreach (var prop in valueProperties)
                 {
-                    var i = 0;
-                    if (prop.SetMethod == null)
+                    if (IgnoreProperty(prop))
                     {
-                        // Property doesn't have a public setter so let's ignore it
+                        // Property doesn't have a public setter or marked as ignore so let's ignore it
                         continue;
                     }
                     var p = prop.GetValue(value);
@@ -46,6 +46,21 @@ namespace DapperParameters
             }
 
             source.Add(parameterName, table.AsTableValuedParameter(dataTableType));
+        }
+
+        private static bool IgnoreProperty(PropertyInfo prop)
+        {
+            return prop.SetMethod == null || GetAttribute<IgnorePropertyAttribute>(prop) != null;
+        }
+
+        private static T GetAttribute<T>(MemberInfo propInfo)
+        {
+            if (propInfo.GetCustomAttributes().FirstOrDefault(a => a is T) is T attribute)
+            {
+                return attribute;
+            }
+
+            return default;
         }
     }
 }

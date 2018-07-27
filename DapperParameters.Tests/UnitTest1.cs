@@ -1,5 +1,6 @@
 ﻿using System;
 using Dapper;
+using DapperParameters.Attributes;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RandomTestValues;
@@ -38,6 +39,17 @@ namespace DapperParameters.Tests
             var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
             x.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TableWithIgnoredAttribute()
+        {
+            // Act
+            _parameters.AddTable("test", "testType", RandomValue.List<IgnoredIntListIdype>());
+
+            // Assert
+            var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
+            x.Should().NotBeNull();
+        }
     }
 
     public class IntListType
@@ -50,6 +62,14 @@ namespace DapperParameters.Tests
     public class IntListTypeWithNullables
     {
         public int? Id { get; set; }
+        public string Title { get; set; }
+        public DateTime Date { get; set; }
+    }
+
+    public class IgnoredIntListIdype
+    {
+        [IgnoreProperty]
+        public int Id { get; set; }
         public string Title { get; set; }
         public DateTime Date { get; set; }
     }
