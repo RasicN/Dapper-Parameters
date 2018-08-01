@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net451;net46;net47;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2018.02.28.1</Version>
+    <Version>2018.8.1.1</Version>
     <Authors>Joe Cisar</Authors>
     <Company />
     <PackageId>Dapper.ParameterExtensions</PackageId>
@@ -14,6 +14,7 @@
     <RepositoryUrl>https://github.com/RasicN/Dapper-Parameters</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <LangVersion>7.2</LangVersion>
+    <PackageReleaseNotes>Included the ability to ignore a parameter.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
