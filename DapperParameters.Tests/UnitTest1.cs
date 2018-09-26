@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Reflection;
 using Dapper;
 using DapperParameters.Attributes;
 using FluentAssertions;
@@ -27,6 +29,11 @@ namespace DapperParameters.Tests
             // Assert
             var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
             x.Should().NotBeNull();
+
+            var table = GetDataTable(x);
+            table.Columns.IndexOf("Id").Should().Be(0);
+            table.Columns.IndexOf("Title").Should().Be(1);
+            table.Columns.IndexOf("Date").Should().Be(2);
         }
 
         [TestMethod]
@@ -38,6 +45,11 @@ namespace DapperParameters.Tests
             // Assert
             var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
             x.Should().NotBeNull();
+
+            var table = GetDataTable(x);
+            table.Columns.IndexOf("Id").Should().Be(0);
+            table.Columns.IndexOf("Title").Should().Be(1);
+            table.Columns.IndexOf("Date").Should().Be(2);
         }
 
         [TestMethod]
@@ -49,6 +61,11 @@ namespace DapperParameters.Tests
             // Assert
             var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
             x.Should().NotBeNull();
+
+            var table = GetDataTable(x);
+            table.Columns.IndexOf("Id").Should().Be(-1);
+            table.Columns.IndexOf("Title").Should().Be(0);
+            table.Columns.IndexOf("Date").Should().Be(1);
         }
 
         [TestMethod]
@@ -60,6 +77,11 @@ namespace DapperParameters.Tests
             // Assert
             var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
             x.Should().NotBeNull();
+
+            var table = GetDataTable(x);
+            table.Columns.IndexOf("Id").Should().Be(-1);
+            table.Columns.IndexOf("Title").Should().Be(0);
+            table.Columns.IndexOf("Date").Should().Be(1);
         }
 
         [TestMethod]
@@ -71,6 +93,17 @@ namespace DapperParameters.Tests
             // Assert
             var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
             x.Should().NotBeNull();
+
+            var table = GetDataTable(x);
+            table.Columns.IndexOf("Id").Should().Be(0);
+            table.Columns.IndexOf("Title").Should().Be(1);
+            table.Columns.IndexOf("Date").Should().Be(2);
+        }
+
+        private DataTable GetDataTable(SqlMapper.ICustomQueryParameter parameter)
+        {
+            return parameter.GetType().GetField("table", BindingFlags.NonPublic | BindingFlags.Instance)
+                .GetValue(parameter) as DataTable;
         }
     }
 
