@@ -10,39 +10,20 @@ namespace DapperParameters
 {
     public static class DynamicParametersExtensions
     {
-        public static void AddTable<T>(this DynamicParameters source, string parameterName, string dataTableType, ICollection<T> values)
+        public static void AddTable<T>(this DynamicParameters source, string parameterName, string dataTableType, IEnumerable<T> values)
         {
             var table = new DataTable();
-
-            var properties = typeof(T).GetRuntimeProperties().ToArray();
+            // Get Properties in order of declaration and ignore if doesn't have a public setter or marked as ignore
+            var properties = GetOrderedProperties<T>().Where(property => !IgnoreProperty(property)).ToList();
 
             foreach (var prop in properties)
             {
-                if (IgnoreProperty(prop))
-                {
-                    // Property doesn't have a public setter or marked as ignore so let's ignore it
-                    continue;
-                }
                 table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
             }
 
             foreach (var value in values)
             {
-                var parameters = new List<object>();
-                var valueProperties = value.GetType().GetRuntimeProperties().ToArray();
-                
-                foreach (var prop in valueProperties)
-                {
-                    if (IgnoreProperty(prop))
-                    {
-                        // Property doesn't have a public setter or marked as ignore so let's ignore it
-                        continue;
-                    }
-                    var p = prop.GetValue(value);
-                    parameters.Add(p);
-                }
-
-                table.Rows.Add(parameters.ToArray());
+                table.Rows.Add(properties.Select(property => property.GetValue(value)).ToArray());
             }
 
             source.Add(parameterName, table.AsTableValuedParameter(dataTableType));
@@ -61,6 +42,13 @@ namespace DapperParameters
             }
 
             return default;
+        }
+
+        private static IEnumerable<PropertyInfo> GetOrderedProperties<T>()
+        {
+            return typeof(T)
+                .GetRuntimeProperties()
+                .OrderBy(propertyInfo => GetAttribute<OrderAttribute>(propertyInfo)?.Order ?? int.MaxValue);
         }
     }
 }

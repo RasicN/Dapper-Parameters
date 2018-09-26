@@ -50,6 +50,28 @@ namespace DapperParameters.Tests
             var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
             x.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TableWithOrderAttribute()
+        {
+            // Act
+            _parameters.AddTable("test", "testType", RandomValue.List<OrderedIntListType>());
+
+            // Assert
+            var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
+            x.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TableWithCustomOrderAttribute()
+        {
+            // Act
+            _parameters.AddTable("test", "testType", RandomValue.List<CustomOrderedIntListType>());
+
+            // Assert
+            var x = _parameters.Get<SqlMapper.ICustomQueryParameter>("test");
+            x.Should().NotBeNull();
+        }
     }
 
     public class IntListType
@@ -72,5 +94,25 @@ namespace DapperParameters.Tests
         public int Id { get; set; }
         public string Title { get; set; }
         public DateTime Date { get; set; }
+    }
+
+    public class OrderedIntListType
+    {
+        [IgnoreProperty]
+        public int Id { get; set; }
+        [Order]
+        public string Title { get; set; }
+        [Order]
+        public DateTime Date { get; set; }
+    }
+
+    public class CustomOrderedIntListType
+    {
+        [Order(3)]
+        public DateTime Date { get; set; }
+        [Order(1)]
+        public int Id { get; set; }
+        [Order(2)]
+        public string Title { get; set; }
     }
 }
