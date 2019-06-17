@@ -18,7 +18,7 @@ namespace DapperParameters
         {
             var table = new DataTable();
 
-            var properties = typeof(T).GetRuntimeProperties().ToArray();
+            var properties = typeof(T).GetRuntimeProperties();
 
             foreach (var prop in properties)
             {
@@ -29,19 +29,14 @@ namespace DapperParameters
 
             foreach (var value in values)
             {
-                var parameters = GetPropertyInfo<T>()
+                var parameters = properties
                             .Where(prop => !IgnoreProperty(prop))
                             .Select(prop => prop.GetValue(value));
 
-                table.Rows.Add(parameters);
+                table.Rows.Add(parameters.ToArray());
             }
 
             source.Add(parameterName, table.AsTableValuedParameter(dataTableType));
-        }
-
-        private static IEnumerable<PropertyInfo> GetPropertyInfo<T>()
-        {
-             return typeof(T).GetRuntimeProperties();
         }
 
         private static bool IgnoreProperty(PropertyInfo prop)
