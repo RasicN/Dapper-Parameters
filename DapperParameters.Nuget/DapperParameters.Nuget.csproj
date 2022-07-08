@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/RasicN/Dapper-Parameters</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Dapper</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
