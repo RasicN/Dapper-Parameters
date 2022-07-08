@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Dapper.ParameterExtensions</PackageId>
+    <Version>2022.7.7.1</Version>
+    <Authors>Joe Cisar</Authors>
+    <Company />
+    <Product>Dapper.ParameterExtensions</Product>
+    <Description>Extension on the Dynamic Parameters of Dapper to make life a little easier when passing parameters to Dapper executions.</Description>
+    <PackageProjectUrl>https://github.com/RasicN/Dapper-Parameters</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RasicN/Dapper-Parameters</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Dapper</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
+  </ItemGroup>
+
+</Project>
