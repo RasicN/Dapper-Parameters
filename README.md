@@ -21,7 +21,7 @@ public class IntListType
 Then put it all together:
 ```csharp
 var ids = new List<int>{1,2,3,4};
-var intList = ids.Select(x => new IntListType { IntValue = x });
+var intList = ids.Select(x => new IntListType { IntValue = x }).ToList();
 
 var parameters = new DynamicParameters();
 parameters.AddTable("@sprocParameterName", "[dbo].[IntList]", intList);
